@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "439110281961",
+    "firebase_url": "https://simplechat-6d901.firebaseio.com",
+    "project_id": "simplechat-6d901",
+    "storage_bucket": "simplechat-6d901.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439110281961:android:f63cd006a11e4c00b2de78",
+        "android_client_info": {
+          "package_name": "com.example.chat_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "439110281961-m31jnntpsiknedrahf4gmvnm6mik5ekc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chat_flutter",
+            "certificate_hash": "ffd5e351ef717976ddb5aace45b84999d0ecc4e1"
+          }
+        },
+        {
+          "client_id": "439110281961-dutrcoq1rlo87krqv423rpp6pv24a416.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_oDADSwLUsmIRGf1ZPBLShhcXhE8lG5U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "439110281961-dutrcoq1rlo87krqv423rpp6pv24a416.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
