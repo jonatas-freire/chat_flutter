@@ -1,20 +1,41 @@
-
-import 'package:chat_flutter/views/login.dart';
+import 'package:chat_online/view/chat.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
-void main() => runApp(MyApp());
+
+void main() async {
+  runApp(MyApp());
+}
+
+final ThemeData DefaultTheme = ThemeData(
+  primarySwatch: Colors.lightBlue,
+  accentColor: Colors.orangeAccent[400],
+);
+
+
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        backgroundColor: Color.fromRGBO(246, 246, 242, 1),
-        primarySwatch: Colors.blue,
-      ),
-      home: Login(),
+      title: "Chat App",
+      debugShowCheckedModeBanner: false,
+      theme: DefaultTheme,
+      home: ChatScreen(),
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+

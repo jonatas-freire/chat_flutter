@@ -2,7 +2,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class User {
+import 'package:flutter/material.dart';
+
+
+class User extends ChangeNotifier {
 
   String nmUser = "";
   String cdEmail = "";
@@ -14,17 +17,34 @@ class User {
     this.cdPassword  
   });
 
-  createUser({String cdEmail, String nmUser, String cdPassword}) async {
-    if(nmUser == '' || cdEmail == '' || cdPassword == ''  ){
-      return "Os campos devem está preenchidos";
+  Future<bool> loginUser({ String cdEmail, String cdPassword }) async {
+    try{
+
+      var userAuth = await FirebaseAuth
+                          .instance
+                          .signInWithEmailAndPassword(email: cdEmail, password: cdPassword);
+      notifyListeners();
+      String token = (await userAuth.getIdToken());
+      print(token);
+
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // await prefs.setString('token', token );
+
+      return true;
+    }catch(e){
+      return false;
     }
 
-    DocumentSnapshot user = await Firestore
+  }
+
+  createUser({String cdEmail, String nmUser, String cdPassword}) async {
+
+    DocumentSnapshot hasUser = await Firestore
                             .instance
                             .collection('user')
                             .document("$cdEmail").get();
     
-    if(user.data != null){
+    if(hasUser.data != null){
       return "Esse e-mail já está cadastrado no sistema";
     }
 
@@ -34,18 +54,29 @@ class User {
                                   password: cdPassword 
                                 )
                               );
-                              
-    print(userAuth.user);
 
-    return userAuth;
+    print(userAuth.getIdToken().toString());
+
+    Firestore
+      .instance
+      .collection('user')
+      .document("$cdEmail")
+      .setData({ 
+        "cdEmail" : "$cdEmail",
+        "nmUser"  : "$nmUser"
+      });
+
   }
 
-  bool loginUser(){
-    return false;
-  }
-
-  bool getUser(){
-    return false;
+  Future<List> getContact(List contactsList) async {
+    Firestore.instance.collection("user")
+    .snapshots().listen((snapshots) {
+        for( DocumentSnapshot doc in snapshots.documents){
+          print(doc.data);
+          contactsList.add(doc);
+        }
+    });
+    return contactsList;
   }
 
   bool addContact(){
